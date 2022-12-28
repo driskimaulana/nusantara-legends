@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 3f934262bbf36ec4da7d7117ba125aad
+  - enabled: 1
+    path: Assets/Scenes/Mahakam2.unity
+    guid: 05c7983915d2d3c4c9d8a3d1aa5c0b3c
+  - enabled: 1
+    path: Assets/Scenes/Mahakam Boss.unity
+    guid: 80baf86c50cfc304e8b0e050506cfcad
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
