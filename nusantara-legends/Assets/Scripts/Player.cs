@@ -1,56 +1,109 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    private BoxCollider2D boxCollider;
-    private Vector3 deltaMove;
+  public float moveSpeed = 1f;
+  public float collisionOffset = 0.05f;
+  public ContactFilter2D movementFilter;
+  public SwordAttack swordAttack;
 
-    private RaycastHit2D hit;
+  Rigidbody2D rb;
+  Vector2 movementInput;
+  Animator animator;
+  SpriteRenderer spriteRenderer;
+  List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
 
-    // Start is called before the first frame update
-    void Start()
+  bool canMove = true;
+
+  // Start is called before the first frame update
+  void Start()
+  {
+    animator = GetComponent<Animator>();
+    rb = GetComponent<Rigidbody2D>();
+    spriteRenderer = GetComponent<SpriteRenderer>();
+  }
+
+  // Update is called once per frame
+  void FixedUpdate()
+  {
+    if (canMove)
     {
-        boxCollider = GetComponent<BoxCollider2D>();   
-    }
+      if (movementInput != Vector2.zero)
+      {
+        bool success = TryMove(movementInput);
 
-    // Update is called once per frame
-    void FixedUpdate()
+        if (!success)
+          success = TryMove(new Vector2(movementInput.x, 0));
+        if (!success)
+          success = TryMove(new Vector2(0, movementInput.y));
+
+        // set animation moving
+        animator.SetBool("isMove", success);
+      }
+      else
+        animator.SetBool("isMove", false);
+
+      // set flip character left and right
+      if (movementInput.x < 0)
+        spriteRenderer.flipX = true;
+      else if (movementInput.x > 0)
+        spriteRenderer.flipX = false;
+    }
+  }
+
+  private bool TryMove(Vector2 direction)
+  {
+    if (direction != Vector2.zero)
     {
+      int count = rb.Cast(
+          movementInput,
+          movementFilter,
+          castCollisions,
+          moveSpeed * Time.fixedDeltaTime + collisionOffset
+        );
 
-        // get input arrow or awsd
-        float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
-
-        deltaMove = new Vector3(x, y, 0);
-
-        // set the player direction
-        if (deltaMove.x < 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else if (deltaMove.x > 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-
-        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, deltaMove.y), Mathf.Abs(deltaMove.y * Time.deltaTime), LayerMask.GetMask("Character", "Blocking"));
-
-        if (hit.collider == null)
-        {
-            // move the player
-            transform.Translate(0, deltaMove.y * Time.deltaTime, 0);
-        }
-
-        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(deltaMove.x, 0), Mathf.Abs(deltaMove.x * Time.deltaTime), LayerMask.GetMask("Character", "Blocking"));
-
-        if (hit.collider == null)
-        {
-            // move the players
-            transform.Translate(deltaMove.x * Time.deltaTime, 0, 0);
-        }
-        
-        
+      if (count == 0)
+      {
+        rb.MovePosition(rb.position + movementInput * moveSpeed * Time.fixedDeltaTime);
+        return true;
+      }
+      else return false;
     }
+    else return false;
+  }
+
+  void OnMove(InputValue movementValue)
+  {
+    movementInput = movementValue.Get<Vector2>();
+  }
+
+  void OnFire()
+  {
+    animator.SetTrigger("swordAttack");
+  }
+
+  public void SwordAttack()
+  {
+    LockMovement();
+    swordAttack.StartAttack();
+  }
+
+  public void EndSwordAttack()
+  {
+    UnlockMovement();
+    swordAttack.StopAttack();
+  }
+
+  public void LockMovement()
+  {
+    canMove = false;
+  }
+
+  public void UnlockMovement()
+  {
+    canMove = true;
+  }
 }
