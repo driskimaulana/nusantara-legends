@@ -195,7 +195,7 @@ TextureImporter:
       213: 2021931061320659302
     second: big_tree_15
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -216,6 +216,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -254,6 +255,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -305,6 +307,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1672,6 +1698,71 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      well_5: 1646375367856145251
+      type_two_rock_3: -4057176492403021482
+      big_rock_3: -4463496741934443371
+      thrunk_0: 388951889637589989
+      big_rock_7: -9121455277928303340
+      well_1: 6623151957235123224
+      cut_tree_2: -3074986553092694246
+      well_9: 8869209736485734012
+      cut_tree_0: -4766507014286398853
+      big_tree_13: -5499942768961539181
+      well_8: -6250598388044826599
+      big_rock_13: 6005660032083659301
+      thrunk_2: 1435957736457713407
+      big_tree_14: -7224213579199388409
+      big_tree_7: -6594573159734875385
+      type_one_rock_1: -6248632946179523363
+      big_tree_6: -1331085986418633347
+      big_rock_6: 8533851862749702962
+      big_rock_11: -3000091906368949060
+      big_rock_10: 4233225008346903114
+      cut_tree_2_3: -7630397722487766834
+      big_tree_5: 6984564763195507798
+      big_tree_8: -6935200820367815036
+      big_tree_15: 2021931061320659302
+      big_tree_2: -6357558756308659496
+      big_tree_1: 2785906533296208649
+      big_tree_12: 8865212159310992929
+      well_10: -1786065944184056463
+      big_rock_5: -4039222180291015547
+      well_6: -8897148225897683382
+      type_two_rock_0: -3590321421211940369
+      well_0: -6470460504253458178
+      well_4: 2413808829277165456
+      type_two_rock_2: -7691191041119155679
+      well_7: -880868186434942258
+      cut_tree_1: 6339087641368018831
+      big_tree_0: 5494556990868581769
+      big_tree_9: -6526163717670985593
+      big_rock_12: -8724713398579440118
+      well_11: -6045798420381719288
+      big_rock_14: 269569186548061821
+      cut_tree_2_2: 6825579594343665946
+      big_tree_10: 1135025597824279128
+      type_one_rock_2: -806835659759760455
+      type_one_rock_3: -7061107466406274038
+      cut_tree_2_0: 3777162861092071733
+      big_rock_1: -7088040987757363880
+      big_rock_4: 3520540282649381370
+      cut_tree_2_1: 4305304083154623364
+      big_rock_15: 7840235571235933139
+      big_tree_3: 6310973175525132320
+      big_rock_9: 8903414975425664113
+      well_3: 3486365374980857469
+      big_rock_2: -2201970939035194063
+      big_tree_11: -311810700407728961
+      thrunk_1: 7381464068428021939
+      thrunk_3: -6819841698245319043
+      type_two_rock_1: -1839476555685683563
+      type_one_rock_0: -5405529900807180627
+      cut_tree_3: 1174730908770329171
+      well_2: 2161284124966242572
+      big_rock_8: 5445347337774989754
+      big_tree_4: -3631647367447323400
+      big_rock_0: 6196495903993864300
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

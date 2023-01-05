@@ -168,7 +168,7 @@ TextureImporter:
       213: 5398123703380718529
     second: stairs_1
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -189,6 +189,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -227,6 +228,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -278,6 +280,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -1435,6 +1461,61 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      water_1: -4197160807500232772
+      bottom_river: -7767899855688311919
+      silver_wall_0: -7563295339155453782
+      soil_1: 3613324002102691226
+      left_soil_edge_0: 5152035065888274081
+      left_corner_river: 601721321273410496
+      left_corner_soil_edge: 8054397781787064197
+      stairs_1: 5398123703380718529
+      water_3: 2868832590482414604
+      silver_wall_4: -883645546373660570
+      tilesets_2: 511751557231380415
+      water_4: -5298902885565915283
+      big_bush: 7644242042049524199
+      big_tree_7: -2050807692096608109
+      silver_wall_2: 6533019904683758206
+      big_tree_6: 9076965357952605414
+      cross_monument: 7095520199948212083
+      big_tree_5: 3497845450899428337
+      big_tree_8: 728183614515874009
+      medium_tree_0: -6882906184223074432
+      right_river_edge_2: 3973233447825532913
+      grass_6: 335383938412225001
+      window_0: -9078968566795276423
+      grass_7: -5064841269018834208
+      big_tree_1: 207799629167017651
+      right_corner_river: 1423925660221616313
+      left_soil_edge_1: -9056843633165961928
+      medium_tree_1: -1681007539122341125
+      silver_wall_3: -216831133632858731
+      right_river_edge: -3386811328247379480
+      grass_0: -4887214739148215214
+      grass_3: 6876506498966806167
+      big_tree_0: 6918151020637308241
+      big_tree_9: 4495271312120870595
+      grass_4: -7341284093400871141
+      bottom_soil_edge: -5079197296252075654
+      right_corner_soil_edge: -2925776207587356950
+      left_river_edge_1: -6975154801169181034
+      water_0: 6105470799778628883
+      window_1: 8381771087374729117
+      grass_5: -6741248223251980269
+      small_bush: 8798183971590883769
+      big_tree_3: -2431579375990507555
+      flower: -8116227782747372081
+      soil_0: -8792382915631715371
+      left_river_edge_0: -2799179244402927233
+      silver_wall_1: 3219719636629034214
+      grass_1: 8097598426421854717
+      silver_wall_5: -2634810729160262226
+      stairs: -6893606465111947806
+      soil_stairs_0: -3486081055201262210
+      right_soil_edge_0: -7511229407482498295
+      big_tree_4: 5254754937103403027
+      right_soil_edge_1: 3944722198634965093
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
