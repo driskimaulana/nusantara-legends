@@ -14,18 +14,25 @@ public class CameraMotor : MonoBehaviour
     {
         Vector3 deltaCam = Vector3.zero;
 
+
         float deltaX = lookAt.position.x - transform.position.x;
         if (deltaX < -boundX || deltaX > boundX)
         {
-            if (lookAt.position.x < transform.position.x)
+            if( lookAt.position.x > -6.584431)
             {
-                // character is on the left of camera center
-                deltaCam.x = deltaX + boundX;
-            } else
-            {
-                // character is on right side of the camera center
-                deltaCam.x = deltaX - boundX;
+                if (lookAt.position.x < transform.position.x && lookAt.position.x > -8)
+                {
+                    // character is on the left of camera center
+                    deltaCam.x = deltaX + boundX;
+                }
+                else
+                {
+                    // character is on right side of the camera center
+                    deltaCam.x = deltaX - boundX;
+                }
             }
+
+            
         }
 
         // check if we're inside the bounds in Y axis

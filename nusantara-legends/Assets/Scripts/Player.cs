@@ -10,6 +10,11 @@ public class Player : MonoBehaviour
   public ContactFilter2D movementFilter;
   public SwordAttack swordAttack;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthBar healthBar;
+
   Rigidbody2D rb;
   Vector2 movementInput;
   Animator animator;
@@ -24,10 +29,13 @@ public class Player : MonoBehaviour
     animator = GetComponent<Animator>();
     rb = GetComponent<Rigidbody2D>();
     spriteRenderer = GetComponent<SpriteRenderer>();
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(currentHealth);
   }
 
   // Update is called once per frame
-  void FixedUpdate()
+  void Update()
   {
     if (canMove)
     {
@@ -52,8 +60,18 @@ public class Player : MonoBehaviour
       else if (movementInput.x > 0)
         spriteRenderer.flipX = false;
     }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage();
+        }
   }
 
+    private void TakeDamage()
+    {
+        currentHealth -= 10;
+        healthBar.SetHealth(currentHealth);
+    }
   private bool TryMove(Vector2 direction)
   {
     if (direction != Vector2.zero)
