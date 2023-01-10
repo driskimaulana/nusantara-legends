@@ -23,43 +23,73 @@ public class Player : MonoBehaviour
 
   bool canMove = true;
 
-  // Start is called before the first frame update
-  void Start()
+    private BoxCollider2D boxCollider;
+    private Vector3 deltaMove;
+
+    private RaycastHit2D hit;
+
+    // Start is called before the first frame update
+    void Start()
   {
     animator = GetComponent<Animator>();
     rb = GetComponent<Rigidbody2D>();
     spriteRenderer = GetComponent<SpriteRenderer>();
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-        healthBar.SetHealth(currentHealth);
-  }
+    currentHealth = maxHealth;
+    healthBar.SetMaxHealth(maxHealth);
+    healthBar.SetHealth(currentHealth);
+
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
 
   // Update is called once per frame
   void Update()
   {
-    if (canMove)
-    {
-      if (movementInput != Vector2.zero)
-      {
+
+        // get input arrow or awsd
+        float x = Input.GetAxisRaw("Horizontal");
+        float y = Input.GetAxisRaw("Vertical");
+
+        deltaMove = new Vector3(x, y, 0);
+
+        Debug.Log(x);
+
+        if(x < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+
+        // set the player direction
+        if (deltaMove.x < 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (deltaMove.x > 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+
+        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(0, deltaMove.y), Mathf.Abs(deltaMove.y * Time.deltaTime), LayerMask.GetMask("Character", "Blocking"));
+
+        if (hit.collider == null)
+        {
+            // move the player
+            transform.Translate(0, deltaMove.y * Time.deltaTime, 0);
+        }
+
+        hit = Physics2D.BoxCast(transform.position, boxCollider.size, 0, new Vector2(deltaMove.x, 0), Mathf.Abs(deltaMove.x * Time.deltaTime), LayerMask.GetMask("Character", "Blocking"));
+
         bool success = TryMove(movementInput);
 
-        if (!success)
-          success = TryMove(new Vector2(movementInput.x, 0));
-        if (!success)
-          success = TryMove(new Vector2(0, movementInput.y));
+        if (hit.collider == null)
+        {
+            // set animation moving
+            animator.SetBool("isMove", success);
+            // move the players
+            transform.Translate(deltaMove.x * Time.deltaTime, 0, 0);
+        }
 
-        // set animation moving
-        animator.SetBool("isMove", success);
-      }
-      else
-        animator.SetBool("isMove", false);
+        
 
-      // set flip character left and right
-      if (movementInput.x < 0)
-        spriteRenderer.flipX = true;
-      else if (movementInput.x > 0)
-        spriteRenderer.flipX = false;
-    }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
