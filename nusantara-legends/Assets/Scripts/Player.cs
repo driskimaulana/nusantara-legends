@@ -15,6 +15,10 @@ public class Player : MonoBehaviour
 
     public HealthBar healthBar;
 
+    public int waterCount;
+
+    public TMPro.TextMeshProUGUI mission;
+
   Rigidbody2D rb;
   Vector2 movementInput;
   Animator animator;
@@ -37,8 +41,11 @@ public class Player : MonoBehaviour
     currentHealth = maxHealth;
     healthBar.SetMaxHealth(maxHealth);
     healthBar.SetHealth(currentHealth);
+        spriteRenderer.flipX = true;
 
         boxCollider = GetComponent<BoxCollider2D>();
+
+        waterCount = 0;
     }
 
   // Update is called once per frame
@@ -51,9 +58,18 @@ public class Player : MonoBehaviour
 
         deltaMove = new Vector3(x, y, 0);
 
-        Debug.Log(x);
+        if(waterCount != 3)
+        {
+            mission.text = "Kumpulkan air dari tiga anak sungai (" + waterCount.ToString() + "/3)";
+        }else
+        {
+            mission.text = "Kumpulkan air dari tiga anak sungai (" + waterCount.ToString() + "/3). Silakang menuju hulu sungai.";
+        }
 
-        if(x < 0)
+        
+
+
+        if (x < 0)
         {
             spriteRenderer.flipX = true;
         }
@@ -87,9 +103,6 @@ public class Player : MonoBehaviour
             // move the players
             transform.Translate(deltaMove.x * Time.deltaTime, 0, 0);
         }
-
-        
-
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

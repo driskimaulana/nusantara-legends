@@ -18,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     public GameObject story1UI;
     public GameObject story2UI;
     public GameObject hintText;
+    public GameObject missionText;
 
     private bool isBefore = false;
 
@@ -84,6 +85,7 @@ public class DialogueManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         dialogueBoxUI.SetActive(false);
+        missionText.SetActive(true);
         Debug.Log("End of conversation...");
     }
 

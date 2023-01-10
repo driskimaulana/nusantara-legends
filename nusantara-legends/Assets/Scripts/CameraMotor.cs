@@ -18,7 +18,7 @@ public class CameraMotor : MonoBehaviour
         float deltaX = lookAt.position.x - transform.position.x;
         if (deltaX < -boundX || deltaX > boundX)
         {
-            if( lookAt.position.x > -6.584431)
+            if( lookAt.position.x > -6.584431 && lookAt.position.x < 3.2)
             {
                 if (lookAt.position.x < transform.position.x && lookAt.position.x > -8)
                 {
@@ -39,15 +39,19 @@ public class CameraMotor : MonoBehaviour
         float deltaY = lookAt.position.y - transform.position.y;
         if (deltaY < -boundY || deltaY > boundY)
         {
-            if (lookAt.position.y < transform.position.y)
+            if(lookAt.position.y > -6.22)
             {
-                // if character is downside of the camera center
-                deltaCam.y = deltaY + boundX;
+                if (lookAt.position.y < transform.position.y)
+                {
+                    // if character is downside of the camera center
+                    deltaCam.y = deltaY + boundX;
+                }
+                else
+                {
+                    deltaCam.y = deltaY - boundY;
+                }
             }
-            else
-            {
-                deltaCam.y = deltaY - boundY;
-            }
+            
         }
 
         transform.position += new Vector3(deltaCam.x, deltaCam.y, 0);

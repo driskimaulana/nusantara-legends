@@ -12,8 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Mahakam2.unity
     guid: 05c7983915d2d3c4c9d8a3d1aa5c0b3c
   - enabled: 1
-    path: Assets/Scenes/Mahakam Boss.unity
-    guid: 80baf86c50cfc304e8b0e050506cfcad
+    path: Assets/Scenes/Mahakam2 Boss.unity
+    guid: b5a8ad97b816dae47bba31abbb06a8f5
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729

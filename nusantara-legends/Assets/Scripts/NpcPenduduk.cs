@@ -9,6 +9,7 @@ public class NpcPenduduk : Collideable
     public GameObject hintText;
 
 
+
     protected override void onCollide(Collider2D coll)
     {
 
