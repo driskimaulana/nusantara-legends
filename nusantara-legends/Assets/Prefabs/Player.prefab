@@ -77,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2025782819
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 5
   m_Sprite: {fileID: -691673907, guid: fc81ac489438474469459c5bda34046b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ec82f84eba48641ad9d4c5e649289b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
   moveSpeed: 1
   collisionOffset: 0.05
   movementFilter:
@@ -140,6 +141,11 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   swordAttack: {fileID: 4850301711014401171}
+  maxHealth: 100
+  currentHealth: 0
+  healthBar: {fileID: 0}
+  waterCount: 0
+  mission: {fileID: 0}
 --- !u!61 &419196577378654366
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -226,6 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8422130919211697652}
   - component: {fileID: 8118812533532656918}
+  - component: {fileID: 7382846309907999316}
   - component: {fileID: 4850301711014401171}
   m_Layer: 0
   m_Name: SwordHitbox
@@ -262,7 +269,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.04984495, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -273,8 +280,29 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.38, y: 0.31}
+  m_Size: {x: 0.2803101, y: 0.31}
   m_EdgeRadius: 0
+--- !u!50 &7382846309907999316
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3820437481918283697}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!114 &4850301711014401171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,5 +315,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee66b16dd6fe2704ab7fac27ff94fd42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  filter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
   swordCollider: {fileID: 8118812533532656918}
   damage: 3
+  pushForce: 2
