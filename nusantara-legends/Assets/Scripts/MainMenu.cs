@@ -9,6 +9,9 @@ public class MainMenu : MonoBehaviour
     public AudioSource clicksound;
     public GameObject credits;
     public GameObject creditsChar;
+    public GameObject missionListUI;
+    public GameObject choosenMission;
+    public GameObject buttonMenu;
 
    public void PlayGame()
     {
@@ -22,6 +25,26 @@ public class MainMenu : MonoBehaviour
         clicksound.loop = false;
         clicksound.Play();
         Application.Quit();
+    }
+
+    public void MissionList()
+    {
+        clicksound.Play();
+        buttonMenu.SetActive(false);
+        missionListUI.SetActive(true);
+    }
+
+    public void ChooseMission()
+    {
+        clicksound.Play();
+        choosenMission.SetActive(true);
+    }
+
+    public void BackMainMenu()
+    {
+        clicksound.Play();
+        missionListUI.SetActive(false);
+        buttonMenu.SetActive(true);
     }
     
     public void Settings()

@@ -10,14 +10,25 @@ public class Player : Damageable
   public ContactFilter2D movementFilter;
   public SwordAttack swordAttack;
 
+
   public int maxHealth = 100;
   public int currentHealth;
+    public int lives = 3;
 
   public HealthBar healthBar;
 
   public int waterCount;
 
   public TMPro.TextMeshProUGUI mission;
+
+    public GameObject hearth1;
+    public GameObject hearth2;
+    public GameObject hearth3;
+
+    public GameObject gameOverUI;
+
+    public AudioSource gameOverSound;
+    public AudioSource backgroundMusic;
 
   Rigidbody2D rb;
   Vector2 movementInput;
@@ -31,6 +42,8 @@ public class Player : Damageable
   private Vector3 deltaMove;
 
   private RaycastHit2D hit;
+
+    public AudioSource swingSound;
 
   // Start is called before the first frame update
   void Start()
@@ -59,17 +72,14 @@ public class Player : Damageable
 
       deltaMove = new Vector3(x, y, 0);
 
-      if (waterCount != 3)
-      {
-        mission.text = "Kumpulkan air dari tiga anak sungai (" + waterCount.ToString() + "/3)";
-      }
-      else
-      {
-        mission.text = "Kumpulkan air dari tiga anak sungai (" + waterCount.ToString() + "/3). Silakang menuju hulu sungai.";
-      }
-
-
-
+            if (waterCount != 3)
+            {
+                mission.text = "Kumpulkan air dari tiga anak sungai (" + waterCount.ToString() + "/3)";
+            }
+            else
+            {
+                mission.text = "Kumpulkan air dari tiga anak sungai (" + waterCount.ToString() + "/3). Silakan menuju hulu sungai.";
+            }
 
       if (x < 0)
       {
@@ -105,8 +115,39 @@ public class Player : Damageable
         // move the players
         transform.Translate(deltaMove.x * Time.deltaTime, 0, 0);
       }
+
+
     }
   }
+
+    public void GetDamage(int damage)
+    {
+        health -= damage;
+        healthBar.SetHealth(health);
+
+        if(health <= 0)
+        {
+            lives--;
+            if(lives == 0)
+            {
+                gameOverSound.Play();
+                backgroundMusic.Pause();
+                hearth1.SetActive(false);
+                gameOverUI.SetActive(true);
+                Time.timeScale = 0f;
+            }else if(lives == 2)
+            {
+                health = maxHealth;
+                healthBar.SetHealth(health);
+                hearth3.SetActive(false);
+            }else if(lives == 1)
+            {
+                health = maxHealth;
+                healthBar.SetHealth(health);
+                hearth2.SetActive(false);
+            }
+        }
+    } 
 
   public override void TakeDamage(int damage)
   {
@@ -151,6 +192,7 @@ public class Player : Damageable
 
   public void SwordAttack()
   {
+        swingSound.Play();
     LockMovement();
     swordAttack.StartAttack();
   }

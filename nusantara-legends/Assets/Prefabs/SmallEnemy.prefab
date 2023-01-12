@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 4869821263682071808}
   - component: {fileID: 3224582404014876493}
   - component: {fileID: 8263480986480002285}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SmallEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3224582404014876492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.083, y: 0.989, z: 0.08303314}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: -2025782819
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6742715835338597436, guid: 279f61bc7c4daab4d9a960064f5aa97e, type: 3}
+  m_Sprite: {fileID: 896946589, guid: 6a0da5fc5ac485e498ca5e8979d03ac0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,18 +101,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0017001629, y: 0.020398766}
+  m_Offset: {x: 0.0017001629, y: 0.00084778666}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.22857143, y: 0.22857143}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.22857143, y: 0.22857143}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1435771, y: 0.12657791}
+  m_Size: {x: 0.1435771, y: 0.1121719}
   m_EdgeRadius: 0
 --- !u!50 &4869821263682071808
 Rigidbody2D:
@@ -147,12 +147,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71fe412df7c31e04aa546893cb7a8591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
-  player: {fileID: 419196577378654364, guid: db5126620fe70ac4ab98b4f148d092d3, type: 3}
+  health: 76
+  player: {fileID: 0}
+  playerProfile: {fileID: 0}
   chaseRange: 1.5
-  moveSpeed: 0.28
+  moveSpeed: 0.8
   damageInterval: 1
   damage: 3
+  attackRange: 0.1
+  canMove: 1
+  misiSuksesSound: {fileID: 0}
+  endgameUI: {fileID: 0}
+  maxHealth: 100
+  healthBar: {fileID: 0}
 --- !u!95 &8263480986480002285
 Animator:
   serializedVersion: 4

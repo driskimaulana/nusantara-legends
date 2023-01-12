@@ -11,7 +11,6 @@ public class Collideable : MonoBehaviour
 
   protected virtual void Start()
   {
-    Debug.Log("Start");
     boxCollider = GetComponent<BoxCollider2D>();
   }
 
@@ -20,7 +19,7 @@ public class Collideable : MonoBehaviour
     // collision work
     boxCollider.OverlapCollider(filter, hits);
 
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < 2; i++)
     {
       if (hits[i] == null)
       {
@@ -40,7 +39,6 @@ public class Collideable : MonoBehaviour
 
   protected virtual void onCollide(Collider2D coll)
   {
-    // Debug.Log(coll.name);
   }
 
   protected virtual void notCollide()

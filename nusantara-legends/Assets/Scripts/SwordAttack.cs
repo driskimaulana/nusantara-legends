@@ -41,7 +41,7 @@ public class SwordAttack : Collideable
 
   private void OnTriggerEnter2D(Collider2D other)
   {
-    Debug.Log("ONHIT");
+    Debug.Log(other.name);
     if (other.CompareTag("Enemy"))
     {
       other.SendMessage("TakeDamage", damage);

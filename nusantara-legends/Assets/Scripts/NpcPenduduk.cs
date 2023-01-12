@@ -8,14 +8,11 @@ public class NpcPenduduk : Collideable
 
     public GameObject hintText;
 
-
-
     protected override void onCollide(Collider2D coll)
     {
-
         hintText.SetActive(true);
 
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyDown(KeyCode.T) && coll.name == "Player")
         {
             hintText.SetActive(false);
             FindObjectOfType<DialogueManager>().StartDialogue(dialogue, true);

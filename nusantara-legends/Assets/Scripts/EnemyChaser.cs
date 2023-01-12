@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyChaser : Damageable
 {
   public Transform player;
+    public Player playerProfile;
   public float chaseRange = 1.5f;
   public float moveSpeed = 0.5f;
   public float damageInterval = 1f;
@@ -16,25 +17,38 @@ public class EnemyChaser : Damageable
   public float attackRange = 0.3f;
   public bool canMove = true;
 
-  void Start()
+    public AudioSource misiSuksesSound;
+    public AudioSource backgroundMusic;
+
+    public GameObject endgameUI;
+
+    private bool enemyAttack = false;
+
+    public int maxHealth = 100;
+
+    public HealthBar healthBar;
+
+    void Start()
   {
     rend = GetComponent<SpriteRenderer>();
     animator = GetComponent<Animator>();
+        health = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        healthBar.SetHealth(maxHealth);
   }
 
   void Update()
   {
     if (canMove)
     {
-      Debug.Log("CAN MOVE");
       float distance = Vector3.Distance(transform.position, player.position);
 
       if (distance < chaseRange)
       {
         if (distance <= attackRange)
         {
-          animator.SetTrigger("isAttack");
-        }
+                    enemyAttack = false;
+                }
         else
         {
           animator.SetBool("run", true);
@@ -63,10 +77,45 @@ public class EnemyChaser : Damageable
     }
   }
 
-  void OnTriggerEnter2D(Collider2D other)
+    public override void TakeDamage(int damage)
+    {
+        health -= damage;
+        healthBar.SetHealth(health);
+        if (health <= 0)
+        {
+            if(this.name == "Boss")
+            {
+                endgameUI.SetActive(true);
+                misiSuksesSound.Play();
+                backgroundMusic.Pause();
+                Dead();
+                Time.timeScale = 0f;
+            }else
+            {
+                misiSuksesSound.Play();
+                Dead();
+            }
+
+            
+        }
+        // else
+        // {
+        //   Debug.Log("KNOCKBACK");
+        //   Vector2 knockbackDirection = new Vector2(1, 0);
+        //   float knockbackForce = 100f;
+        //   GetComponent<Rigidbody2D>().AddForce(knockbackDirection * knockbackForce);
+        // }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
   {
-    // Debug.Log("OnCollisionEnter2D is called 2");
-  }
+        if(other.name == "Player")
+        {
+            playerProfile.GetDamage(5);
+            Debug.Log("Player");
+        }
+        // Debug.Log("OnCollisionEnter2D is called 2");
+    }
 
   // private void OnTriggerStay2D(Collider2D collision)
   // {
@@ -78,12 +127,7 @@ public class EnemyChaser : Damageable
   //   // }
   // }
 
-  public override void TakeDamage(int damage)
-  {
-    Debug.Log("ENEMY ATTACKKKKKKK");
-    base.TakeDamage(Mathf.RoundToInt(damage));
-    animator.SetTrigger("attacked");
-  }
+  
 
   public void enemyIsAttacking()
   {
