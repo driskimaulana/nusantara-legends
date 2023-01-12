@@ -2,16 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordAttack : MonoBehaviour
+public class SwordAttack : Collideable
 {
   public Collider2D swordCollider;
   public float damage = 3;
+  public float pushForce = 2.0f;
 
   Vector2 rightAttackOffset;
 
-  private void Start()
+  protected override void Start()
   {
+    base.Start();
     rightAttackOffset = transform.position;
+  }
+
+  protected override void Update()
+  {
+    base.Update();
+  }
+
+  protected override void onCollide(Collider2D coll)
+  {
+    if (coll.tag == "Enemy")
+    {
+      // Debug.Log(coll.name);
+    }
   }
 
   public void StartAttack()
@@ -27,15 +42,9 @@ public class SwordAttack : MonoBehaviour
   private void OnTriggerEnter2D(Collider2D other)
   {
     Debug.Log("ONHIT");
-    // if (other.tag == "Enemy")
-    // {
-    //   IDamageable damageableObject = other.GetComponent<IDamageable>();
-    //   if (damageableObject != null)
-    //   {
-    //     other.SendMessage("OnHit", damage);
-    //   }
-    //   else
-    //     Debug.LogWarning("This object is not implement IDamageable");
-    // }
+    if (other.CompareTag("Enemy"))
+    {
+      other.SendMessage("TakeDamage", damage);
+    }
   }
 }
